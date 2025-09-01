@@ -52,6 +52,6 @@ El análisis mostró que el **modelo polinomial de grado 3** fue el que mejor se
 ---
 
 ## Archivos generados
-- [Notebook en ipynb](Regresion_No_Lineal.ipynb)  
-- [Reporte en html](Regresion_No_Lineal.html)  
+- [Notebook en ipynb](Regresion_no_Lineal.ipynb)  
+- [Reporte en html](Regresion_no_Lineal.html)  
 - [Base de datos](Base_de_Datos_Tiempo_de_Entrega.csv)  
