@@ -1,47 +1,57 @@
-# Regresion-no-linea
+# Solución de Problemas — Modelado de Calificación según Tiempo de Entrega
 
-# Regresión No Lineal
+## Descripción del análisis
+El objetivo principal fue **predecir la calificación obtenida por los estudiantes** en función del **tiempo de entrega** de sus actividades, explorando diferentes técnicas de regresión no lineal: polinomial, segmentada y KNN.
 
-Este proyecto analiza la relación entre el **Tiempo de entrega** y la **Calificacion** mediante distintos modelos de regresión no lineal.
+La base de datos utilizada incluyó **432 observaciones**, que después de una limpieza de valores atípicos se redujo a **376 registros**.
 
 ---
 
-## Contenido del análisis
+## Variables incluidas
+- **Tiempo**: horas restantes al cierre de la bandeja (valores negativos indican entregas posteriores).  
+- **Calificacion**: nota obtenida por la entrega (0–110).  
 
-### 1 — Importación, limpieza y dispersión
-- Se importó el archivo de datos y se eliminaron valores atípicos con el criterio **IQR**.
-- El dataset pasó de 432 a 376 registros.
-- La gráfica de dispersión mostró que a mayor tiempo de entrega (más tardío), las calificaciones tienden a disminuir.
+---
 
-### 2 — División entrenamiento/prueba
-- Se dividió el dataset en **70% entrenamiento** y **30% prueba**.
-- Los promedios de ambos subconjuntos resultaron similares, garantizando representatividad.
+## Pasos realizados
 
-### 3 — Regresión Polinomial
-- Se entrenó un modelo **polinomial de grado 3**.
-- Capturó de forma adecuada la tendencia no lineal entre Tiempo y Calificacion.
+### **1. Importación y limpieza de datos**
+Se cargó el archivo `A1.6 Tiempo de Entrega.csv` y se eliminaron valores atípicos mediante el método IQR en ambas variables.  
+La base pasó de 432 a 376 registros.
 
-### 4 — Regresión Segmentada
-- Se calculó un **punto de quiebre (knot)** en la mediana del Tiempo.
-- Se entrenaron dos cuadráticas: una para valores menores/iguales al knot y otra para valores mayores.
+### **2. Análisis exploratorio**
+Se graficó la dispersión entre **Tiempo** y **Calificacion**, observando una tendencia a que las entregas más tardías se asocian con calificaciones menores.
 
-### 5 — Regresión KNN
-- Se probaron distintos valores de **k = {3, 5, 7, 9, 11}**.
-- El mejor resultado se obtuvo con **k = 3**, aunque el modelo mostró menor interpretabilidad.
+### **3. División en conjuntos**
+Se realizó un **split 70/30** para entrenamiento y prueba, verificando que los promedios entre ambos conjuntos fueran similares.
 
-### 6 — Evaluación de los modelos
-Se calcularon los errores **RMSE** en el conjunto de prueba:
+### **4. Regresión Polinomial**
+Se entrenó un modelo polinomial de **grado 3**, logrando capturar la curvatura de la relación entre las variables.
+
+### **5. Regresión Segmentada**
+Se calculó un **punto de quiebre (knot)** en la mediana del tiempo y se entrenaron dos cuadráticas, una a la izquierda y otra a la derecha del knot.
+
+### **6. Regresión KNN**
+Se probaron distintos valores de *k = {3, 5, 7, 9, 11}*.  
+El mejor ajuste se obtuvo con **k = 3**, aunque mostró menor interpretabilidad.
+
+### **7. Evaluación de modelos**
+Se calcularon errores **RMSE** en el conjunto de prueba:  
 - Polinomial (grado 3): ≈ 17.73  
 - Segmentada (2 cuadráticas): ≈ 17.82  
 - KNN (k=3): ≈ 19.34  
 
-El **modelo polinomial** obtuvo el menor error, seguido muy de cerca por el segmentado.
-
-### 7 — Gráfica comparativa
-- Se graficaron los puntos reales junto con las curvas de los tres modelos.  
-- La curva polinomial resultó más estable y coherente con la tendencia observada.
+### **8. Gráfica comparativa**
+Se compararon las curvas de los tres modelos contra los datos reales, observando que el **modelo polinomial** ofreció la curva más estable y cercana a la tendencia.
 
 ---
 
 ## Conclusión
-El análisis permitió explorar distintas técnicas de regresión no lineal para modelar la relación entre el tiempo de entrega y la calificación. Aunque el **modelo polinomial de grado 3** fue el que mostró mejor desempeño y mayor estabilidad, esto no constituye una comprobación definitiva de la hipótesis sobre la relación entre entregar más tarde y obtener menor calificación, sino que sugiere una posible tendencia que debería validarse con más evidencia y datos adicionales.
+El análisis mostró que el **modelo polinomial de grado 3** fue el que mejor se ajustó a los datos, seguido muy de cerca por la regresión segmentada. El modelo KNN presentó mayor variabilidad y menor interpretabilidad. Sin embargo, aunque el polinomial sea el que más se ajusta, esto no constituye una comprobación definitiva de la relación entre el tiempo de entrega y la calificación, sino que únicamente sugiere una posible tendencia que debería confirmarse con más evidencia.
+
+---
+
+## Archivos generados
+- [Notebook en ipynb](Regresion_No_Lineal.ipynb)  
+- [Reporte en html](Regresion_No_Lineal.html)  
+- [Base de datos](Base_de_Datos_Tiempo_de_Entrega.csv)  
